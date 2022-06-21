@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="width_logo">90dp</dimen>
+    <dimen name="height_logo">90dp</dimen>
+    <dimen name="large_space">32dp</dimen>
+    <dimen name="short_space">12dp</dimen>
+    <dimen name="height_banner_logo">60dp</dimen>
+    <dimen name="medium_space">24dp</dimen>
+    <dimen name="height_text_input">60dp</dimen>
+    <dimen name="size_text_button_login">24dp</dimen>
+    <dimen name="height_button_login">60dp</dimen>
+    <dimen name="size_text_banner_login">32dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="height_search_view">60dp</dimen>
+    <dimen name="height_item_marks">60dp</dimen>
+</resources>

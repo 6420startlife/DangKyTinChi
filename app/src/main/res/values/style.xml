@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="logo_title">
+        <item name="android:textAlignment">center</item>
+        <item name="android:text">@string/name_school</item>
+        <item name="android:textColor">@color/logo_title_color</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">24dp</item>
+    </style>
+    <style name="button_login">
+        <item name="android:text">@string/string_login</item>
+        <item name="android:textSize">@dimen/size_text_button_login</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="button_logout">
+        <item name="android:background">@drawable/background_button_logout</item>
+        <item name="android:text">@string/string_logout</item>
+        <item name="android:textSize">@dimen/size_text_button_login</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/red</item>
+    </style>
+    <style name="banner_login">
+        <item name="android:gravity">center</item>
+        <item name="android:text">@string/string_banner</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/size_text_banner_login</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+    <style name="button_dangKy">
+        <item name="android:backgroundTint">@color/pink</item>
+        <item name="android:text">@string/string_dangKy</item>
+        <item name="android:textSize">@dimen/size_text_button_login</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="button_huyDangKy">
+        <item name="android:backgroundTint">@color/pink</item>
+        <item name="android:text">@string/string_huyDangKy</item>
+        <item name="android:textSize">@dimen/size_text_button_login</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+</resources>

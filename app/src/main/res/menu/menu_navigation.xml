@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_item_home" android:title="Home" android:icon="@drawable/ic_baseline_home_24" />
+    <item android:id="@+id/menu_item_marks" android:title="Marks" android:icon="@drawable/archive"/>
+    <item android:id="@+id/menu_item_registered" android:title="Registered"
+        android:icon="@drawable/verify"/>
+    <item android:id="@+id/menu_item_user" android:title="User" android:icon="@drawable/ic_baseline_person_24"/>
+</menu>

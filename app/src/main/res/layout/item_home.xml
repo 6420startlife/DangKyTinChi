@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:id="@+id/layoutItemHome">
+
+    <ImageView
+        android:id="@+id/ivCheckChoose"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/ic_baseline_check_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#8BC34A"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tvMonHoc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="Môn học"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvMaLTC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mã LTC"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvMonHoc"
+        app:layout_constraintTop_toBottomOf="@+id/tvMonHoc"
+        app:layout_constraintVertical_bias="0.25"/>
+
+    <TextView
+        android:id="@+id/tvNienKhoa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="Niên Khoá"
+        app:layout_constraintBottom_toBottomOf="@+id/tvMaLTC"
+        app:layout_constraintStart_toEndOf="@+id/tvMaLTC" />
+
+    <TextView
+        android:id="@+id/tvHocKy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="Học kỳ"
+        app:layout_constraintBottom_toBottomOf="@+id/tvNienKhoa"
+        app:layout_constraintStart_toEndOf="@+id/tvNienKhoa" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
