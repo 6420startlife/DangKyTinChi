@@ -9,8 +9,8 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -26,11 +26,12 @@ public interface ApiInterface {
 
     @GET("LopTC/GetDSLopTCChuaDangKyByMaSV")
     Call<List<ResponseHome>> loadHome(@Query("Masv") String Masv);
-    @GET("LopTC/GetDSLopTCChuaDangKyByMaSV")
+    @GET("LopTC/GetDSLopTCDaDangKyByMaSV")
     Call<List<ResponseHome>> loadRegistered(@Query("Masv") String Masv);
 
     @POST("DangKy")
-    Call<RequestHome> dangKy(@Body RequestHome requestHome);
-    @DELETE("DangKy")
-    Call<RequestHome> huyDangKy(@Body RequestHome requestHome);
+    Call<String> dangKy(@Body List<RequestHome> requestHomeList);
+
+    @HTTP(method = "DELETE", path = "DangKy", hasBody = true)
+    Call<String> huyDangKy(@Body List<RequestHome> requestHomeList);
 }

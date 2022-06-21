@@ -36,7 +36,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    style="@style/button_huyDangKy"/>
+                    style="@style/button_dangKy"/>
             </FrameLayout>
 
         </LinearLayout>

@@ -12,6 +12,7 @@ import com.ptithcm.dangkytinchi.repositories.HomeRepository;
 import com.ptithcm.dangkytinchi.request.RequestHome;
 import com.ptithcm.dangkytinchi.response.ResponseHome;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomePresenter {
@@ -78,13 +79,13 @@ public class HomePresenter {
     }
 
     public void dangKy(){
-        mHomeRepository.getIsUpdating().postValue(true);
+        List<RequestHome> requestHomeList = new ArrayList<>();
         for (ResponseHome responseHome : mResponseHomeList.getValue()) {
             if(responseHome.isCheck()){
-                mHomeRepository.dangKyTinChi(new RequestHome(responseHome.getMaLTC(), MA_SV));
+                RequestHome requestHome = new RequestHome(responseHome.getMaLTC(), MA_SV);
+                requestHomeList.add(requestHome);
             }
         }
-        mHomeRepository.getIsUpdating().postValue(false);
-        loadData();
+        mHomeRepository.dangKyTinChi(requestHomeList,MA_SV);
     }
 }

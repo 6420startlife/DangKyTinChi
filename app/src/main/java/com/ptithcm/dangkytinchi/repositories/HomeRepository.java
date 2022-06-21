@@ -61,16 +61,23 @@ public class HomeRepository {
         });
     }
 
-    public void dangKyTinChi(RequestHome requestHome){
-        ApiService.getApi().dangKy(requestHome).enqueue(new Callback<RequestHome>() {
+    public void dangKyTinChi(List<RequestHome> requestHomeList, String maSV){
+        isUpdating.postValue(true);
+        ApiService.getApi().dangKy(requestHomeList).enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<RequestHome> call, Response<RequestHome> response) {
-                Log.e("ErrorApi", response.raw().toString());
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(!response.isSuccessful()){
+                    isUpdating.postValue(false);
+                    return;
+                }
+                loadHome(maSV);
+                isUpdating.postValue(false);
             }
 
             @Override
-            public void onFailure(Call<RequestHome> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 Log.e("ErrorApi", t.getMessage());
+                isUpdating.postValue(false);
             }
         });
     }

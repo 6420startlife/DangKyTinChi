@@ -17,7 +17,7 @@ import retrofit2.Response;
 public class RegisteredRepository {
     public static RegisteredRepository instance;
     private MutableLiveData<Boolean> isUpdating;
-    private MutableLiveData<List<ResponseHome>> liveDataHome;
+    private MutableLiveData<List<ResponseHome>> liveDataRegítered;
 
     public static RegisteredRepository getInstance() {
         if(instance == null) {
@@ -30,13 +30,13 @@ public class RegisteredRepository {
         return isUpdating;
     }
 
-    public MutableLiveData<List<ResponseHome>> getLiveDataHome() {
-        return liveDataHome;
+    public MutableLiveData<List<ResponseHome>> getLiveDataRegítered() {
+        return liveDataRegítered;
     }
 
     public RegisteredRepository() {
         isUpdating = new MutableLiveData<>();
-        liveDataHome = new MutableLiveData<>();
+        liveDataRegítered = new MutableLiveData<>();
         isUpdating.postValue(false);
     }
 
@@ -49,7 +49,7 @@ public class RegisteredRepository {
                     isUpdating.postValue(false);
                     return;
                 }
-                liveDataHome.postValue(response.body());
+                liveDataRegítered.postValue(response.body());
                 isUpdating.postValue(false);
             }
 
@@ -61,16 +61,23 @@ public class RegisteredRepository {
         });
     }
 
-    public void huyDangKyTinChi(RequestHome requestHome){
-        ApiService.getApi().huyDangKy(requestHome).enqueue(new Callback<RequestHome>() {
+    public void huyDangKyTinChi(List<RequestHome> requestHomeList, String maSV){
+        isUpdating.postValue(true);
+        ApiService.getApi().huyDangKy(requestHomeList).enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<RequestHome> call, Response<RequestHome> response) {
-                Log.e("ErrorApi", response.raw().toString());
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(!response.isSuccessful()){
+                    isUpdating.postValue(false);
+                    return;
+                }
+                loadRegistered(maSV);
+                isUpdating.postValue(false);
             }
 
             @Override
-            public void onFailure(Call<RequestHome> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 Log.e("ErrorApi", t.getMessage());
+                isUpdating.postValue(false);
             }
         });
     }

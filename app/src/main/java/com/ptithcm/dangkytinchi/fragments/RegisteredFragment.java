@@ -69,7 +69,7 @@ public class RegisteredFragment extends Fragment implements HomeInterface {
     }
 
     private void initRecyclerView() {
-        rvRegistered.setAdapter(mRegisteredPresenter.getmHomeAdapter());
+        rvRegistered.setAdapter(mRegisteredPresenter.getmRegisteredAdapter());
         rvRegistered.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
@@ -102,7 +102,7 @@ public class RegisteredFragment extends Fragment implements HomeInterface {
 
     @Override
     public void loadHome(List<ResponseHome> responseHomeList) {
-        mRegisteredPresenter.getmHomeAdapter().notifyDataSetChanged();
+        mRegisteredPresenter.getmRegisteredAdapter().notifyDataSetChanged();
     }
 
     @Override

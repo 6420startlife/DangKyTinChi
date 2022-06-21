@@ -2,6 +2,8 @@ package com.ptithcm.dangkytinchi.presenter;
 
 import static com.ptithcm.dangkytinchi.utils.Credentials.MA_SV;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
@@ -12,17 +14,18 @@ import com.ptithcm.dangkytinchi.repositories.RegisteredRepository;
 import com.ptithcm.dangkytinchi.request.RequestHome;
 import com.ptithcm.dangkytinchi.response.ResponseHome;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RegisteredPresenter {
     private HomeInterface mHomeInterface;
     private RegisteredFragment context;
     private RegisteredRepository mRegisteredRepository;
-    private HomeAdapter mHomeAdapter;
+    private HomeAdapter mRegisteredAdapter;
     private MutableLiveData<List<ResponseHome>> mResponseHomeList;
 
-    public HomeAdapter getmHomeAdapter() {
-        return mHomeAdapter;
+    public HomeAdapter getmRegisteredAdapter() {
+        return mRegisteredAdapter;
     }
 
     public MutableLiveData<List<ResponseHome>> getmResponseHomeList() {
@@ -34,16 +37,16 @@ public class RegisteredPresenter {
         this.context = context;
         this.mResponseHomeList = new MutableLiveData<>();
         mRegisteredRepository = new RegisteredRepository();
-        mHomeAdapter = new HomeAdapter(getmResponseHomeList().getValue());
+        mRegisteredAdapter = new HomeAdapter(getmResponseHomeList().getValue());
         getmResponseHomeList().observe(context, new Observer<List<ResponseHome>>() {
             @Override
             public void onChanged(List<ResponseHome> responseHomeList) {
-                if(mHomeAdapter == null) {
-                    mHomeAdapter = new HomeAdapter(responseHomeList);
-                    mHomeAdapter.notifyDataSetChanged();
+                if(mRegisteredAdapter == null) {
+                    mRegisteredAdapter = new HomeAdapter(responseHomeList);
+                    mRegisteredAdapter.notifyDataSetChanged();
                 }else{
-                    mHomeAdapter.setResponseHomeList(responseHomeList);
-                    mHomeAdapter.notifyDataSetChanged();
+                    mRegisteredAdapter.setResponseHomeList(responseHomeList);
+                    mRegisteredAdapter.notifyDataSetChanged();
                 }
             }
         });
@@ -54,13 +57,13 @@ public class RegisteredPresenter {
                 else mHomeInterface.turnOffLoading();
             }
         });
-        mRegisteredRepository.getLiveDataHome().observe(context, new Observer<List<ResponseHome>>() {
+        mRegisteredRepository.getLiveDataRegítered().observe(context, new Observer<List<ResponseHome>>() {
             @Override
             public void onChanged(List<ResponseHome> responseHomeList) {
                 mResponseHomeList.postValue(responseHomeList);
             }
         });
-        mHomeAdapter.getCountSelected().observe(context, new Observer<Integer>() {
+        mRegisteredAdapter.getCountSelected().observe(context, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
                 if(integer > 0) {
@@ -74,17 +77,19 @@ public class RegisteredPresenter {
 
     public void loadData() {
         mRegisteredRepository.loadRegistered(MA_SV);
-        mHomeAdapter.getCountSelected().postValue(0);
+        mRegisteredAdapter.getCountSelected().postValue(0);
     }
 
     public void huyDangKy(){
-        mRegisteredRepository.getIsUpdating().postValue(true);
+        List<RequestHome> requestHomeList = new ArrayList<>();
         for (ResponseHome responseHome : mResponseHomeList.getValue()) {
             if(responseHome.isCheck()){
-                mRegisteredRepository.huyDangKyTinChi(new RequestHome(responseHome.getMaLTC(), MA_SV));
+                RequestHome requestHome = new RequestHome(responseHome.getMaLTC(), MA_SV);
+                requestHomeList.add(requestHome);
+                Log.e("ErrorApi", requestHome.getMaLTC());
             }
         }
-        mRegisteredRepository.getIsUpdating().postValue(false);
-        loadData();
+
+        mRegisteredRepository.huyDangKyTinChi(requestHomeList,MA_SV);
     }
 }
