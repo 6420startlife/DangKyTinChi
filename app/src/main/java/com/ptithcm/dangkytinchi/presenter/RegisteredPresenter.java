@@ -2,8 +2,6 @@ package com.ptithcm.dangkytinchi.presenter;
 
 import static com.ptithcm.dangkytinchi.utils.Credentials.MA_SV;
 
-import android.util.Log;
-
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
@@ -86,10 +84,10 @@ public class RegisteredPresenter {
             if(responseHome.isCheck()){
                 RequestHome requestHome = new RequestHome(responseHome.getMaLTC(), MA_SV);
                 requestHomeList.add(requestHome);
-                Log.e("ErrorApi", requestHome.getMaLTC());
             }
         }
 
         mRegisteredRepository.huyDangKyTinChi(requestHomeList,MA_SV);
+        mRegisteredAdapter.getCountSelected().postValue(0);
     }
 }

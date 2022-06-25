@@ -87,5 +87,6 @@ public class HomePresenter {
             }
         }
         mHomeRepository.dangKyTinChi(requestHomeList,MA_SV);
+        mHomeAdapter.getCountSelected().postValue(0);
     }
 }
